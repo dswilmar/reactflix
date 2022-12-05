@@ -1,3 +1,10 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
 .lista-filmes {
     max-width: 800px;
     margin: 14px auto;
