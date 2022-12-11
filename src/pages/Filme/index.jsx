@@ -35,6 +35,23 @@ const Filme = () => {
         }
     }, [id, navigate]);
 
+    function salvarFilme() {
+        const minhaLista = localStorage.getItem("@reactflix");
+        let filmesSalvos = JSON.parse(minhaLista) || [];
+        const hasFilme = filmesSalvos.some((filmeSalvo) => {
+            return filmeSalvo.id === filme.id
+        });
+
+        if (hasFilme) {
+            alert("Filme já está na lista");
+            return;
+        }
+
+        filmesSalvos.push(filme);
+        localStorage.setItem("@reactflix", JSON.stringify(filmesSalvos));
+        alert("Filme salvo com sucesso!");
+    }
+
     if (isLoading) {
         return (
             <div className="filme-info">
@@ -52,7 +69,7 @@ const Filme = () => {
             <strong>Avaliação: {filme.vote_average}/10</strong>
 
             <div className="area-buttons">
-                <button>Salvar</button>
+                <button onClick={salvarFilme}>Salvar</button>
                 <button>
                     <a href={`https://youtube.com/results?search_query=${filme.title} trailer`} target="_blank" rel="external">Trailer</a>
                 </button>
