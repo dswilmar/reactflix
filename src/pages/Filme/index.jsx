@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import api from "../../services/api";
 import "./styles.css";
 
@@ -43,13 +44,13 @@ const Filme = () => {
         });
 
         if (hasFilme) {
-            alert("Filme já está na lista");
+            toast.warn("Filme já está na lista");
             return;
         }
 
         filmesSalvos.push(filme);
         localStorage.setItem("@reactflix", JSON.stringify(filmesSalvos));
-        alert("Filme salvo com sucesso!");
+        toast.success("Filme salvo com sucesso!");
     }
 
     if (isLoading) {
